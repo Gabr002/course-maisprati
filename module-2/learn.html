@@ -4,65 +4,961 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título do site</title>
+    <meta name="description" content="Guia técnico interativo e portfólio de estudos sobre Semântica HTML5, Acessibilidade (A11Y), Arquitetura da Informação e Design Web Moderno. Desenvolvido no Programa Mais Prati.">
+    <meta name="keywords" content="HTML5, Semântica, Acessibilidade, Front-end, Web Development, Mais Prati, Portfólio">
+    <meta name="author" content="Desenvolvedor Front-End Mais Prati">
+    <title>HTML5 Semântico & Acessibilidade Web | Portfólio de Aprendizado</title>
+    
+    <!-- Google Fonts para Tipografia Moderna e Profissional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           DESIGN SYSTEM & TOKENS VARIÁVEIS (Dark Mode & Glassmorphism)
+           ========================================================================== */
+        :root {
+            /* Paleta HSL Curada - Premium Neon Dark Theme */
+            --bg-primary: hsl(222, 47%, 6%);
+            --bg-secondary: hsl(220, 40%, 10%);
+            --bg-glass: hsla(220, 35%, 16%, 0.65);
+            --bg-glass-hover: hsla(220, 35%, 22%, 0.8);
+            --border-glass: hsla(220, 20%, 80%, 0.15);
+            --border-glass-glow: hsla(180, 100%, 50%, 0.4);
+
+            /* Cores de Acento */
+            --accent-cyan: hsl(180, 100%, 50%);
+            --accent-purple: hsl(265, 89%, 70%);
+            --accent-emerald: hsl(150, 100%, 45%);
+            --accent-gradient: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+
+            /* Cores de Texto */
+            --text-main: hsl(220, 20%, 95%);
+            --text-muted: hsl(220, 15%, 68%);
+            --text-code: hsl(180, 85%, 65%);
+
+            /* Sombras e Efeitos */
+            --shadow-glow: 0 0 25px hsla(180, 100%, 50%, 0.15);
+            --shadow-card: 0 10px 30px -10px hsla(0, 0%, 0%, 0.5);
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+
+            /* Animações e Transições */
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, hsla(265, 89%, 60%, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, hsla(180, 100%, 50%, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: hsla(220, 20%, 40%, 0.5);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
+
+        /* ==========================================================================
+           COMPONENTES COMUNS & TIPOGRAFIA
+           ========================================================================== */
+        code {
+            font-family: 'Fira Code', monospace;
+            background: hsla(220, 40%, 8%, 0.8);
+            color: var(--text-code);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.88em;
+            border: 1px solid hsla(180, 100%, 50%, 0.2);
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .tag-badge {
+            display: inline-flex;
+            align-items: center;
+            background: hsla(180, 100%, 50%, 0.1);
+            color: var(--accent-cyan);
+            padding: 0.35rem 0.85rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid hsla(180, 100%, 50%, 0.3);
+            margin-bottom: 0.75rem;
+        }
+
+        .pro-tip {
+            background: hsla(150, 100%, 45%, 0.06);
+            border-left: 4px solid var(--accent-emerald);
+            padding: 1.25rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .pro-tip-icon {
+            color: var(--accent-emerald);
+            font-size: 1.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+           ESTRUTURA DE LAYOUT (HEADER, NAV, MAIN, FOOTER)
+           ========================================================================== */
+        header {
+            position: relative;
+            padding: 5rem 1.5rem 4rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        header p.subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        .author-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--bg-glass);
+            padding: 0.5rem 1.25rem;
+            border-radius: 99px;
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(8px);
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-emerald);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        /* Sticky Navigation */
+        nav {
+            position: sticky;
+            top: 1rem;
+            z-index: 1000;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: hsla(222, 47%, 8%, 0.85);
+            backdrop-filter: blur(16px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 15px 35px hsla(0, 0%, 0%, 0.4);
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+            background: hsla(220, 20%, 100%, 0.05);
+        }
+
+        /* Container Principal */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        /* ==========================================================================
+           SEÇÕES DE ESTUDO (CARDS DE CONCEITO & DEMONSTRAÇÕES)
+           ========================================================================== */
+        .module-section {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-section:hover {
+            border-color: var(--border-glass-glow);
+            box-shadow: var(--shadow-glow), var(--shadow-card);
+            transform: translateY(-2px);
+        }
+
+        .module-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+            opacity: 0.8;
+        }
+
+        .module-header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 1.5rem;
+        }
+
+        .module-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+        }
+
+        .grid-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .grid-split {
+                grid-template-columns: 1fr;
+            }
+            .module-section {
+                padding: 1.75rem;
+            }
+        }
+
+        /* Demo Boxes */
+        .demo-box {
+            background: hsla(222, 50%, 4%, 0.8);
+            border: 1px solid hsla(220, 20%, 20%, 0.8);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .demo-label {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Estilos ESPECÍFICOS PARA OS EXEMPLOS DO MÓDULO 03 (Classes vs IDs) */
+        .destaque {
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 0.75rem;
+            color: hsl(260, 100%, 85%);
+            font-weight: 500;
+            margin: 0.5rem 0;
+            background: hsla(265, 89%, 70%, 0.05);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .caixa {
+            background: linear-gradient(135deg, hsla(265, 89%, 60%, 0.15), hsla(180, 100%, 50%, 0.15));
+            border: 1px dashed var(--accent-cyan);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        #aviso {
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* ==========================================================================
+           TABELAS DE DADOS ULTRA MODERNAS (MÓDULO 04)
+           ========================================================================== */
+        .table-container {
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glass);
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background: hsla(222, 50%, 5%, 0.9);
+        }
+
+        caption {
+            caption-side: top;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            background: hsla(220, 20%, 12%, 0.8);
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        thead {
+            background: hsla(220, 35%, 16%, 0.9);
+        }
+
+        th {
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--border-glass);
+        }
+
+        td, th[scope="row"] {
+            padding: 1rem;
+            border-bottom: 1px solid hsla(220, 20%, 80%, 0.05);
+            font-size: 0.95rem;
+        }
+
+        th[scope="row"] {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        tbody tr {
+            transition: var(--transition-fast);
+        }
+
+        tbody tr:hover {
+            background: hsla(180, 100%, 50%, 0.05);
+        }
+
+        .badge-nota {
+            background: hsla(150, 100%, 45%, 0.15);
+            color: var(--accent-emerald);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid hsla(150, 100%, 45%, 0.3);
+        }
+
+        /* ==========================================================================
+           FORMULÁRIO INTERATIVO AVANÇADO (MÓDULO 05)
+           ========================================================================== */
+        form {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .required-star {
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: hsla(222, 50%, 4%, 0.9);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px hsla(180, 100%, 50%, 0.15);
+            background: hsla(222, 50%, 3%, 1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            user-select: none;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--accent-cyan);
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            box-shadow: 0 4px 15px hsla(180, 100%, 50%, 0.25);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px hsla(180, 100%, 50%, 0.4);
+            filter: brightness(1.1);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        /* Notificação Interativa JS */
+        #toast-notice {
+            display: none;
+            background: hsla(150, 100%, 20%, 0.95);
+            border: 1px solid var(--accent-emerald);
+            color: var(--text-main);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-top: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           RODAPÉ / FOOTER
+           ========================================================================== */
+        footer {
+            margin-top: 6rem;
+            border-top: 1px solid var(--border-glass);
+            padding: 4rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background: hsla(222, 50%, 4%, 0.8);
+        }
+
+        footer strong {
+            color: var(--text-main);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+            filter: brightness(1.2);
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Aprendendo semântica do HTML -->
+    <!-- HEADER SEMÂNTICO & DESTAQUE DO CANDIDATO -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
+        <span class="tag-badge">🚀 Módulo 02 &bull; Programa Mais Prati</span>
+        <h1>Engenharia de Front-End:<br><span class="gradient-text">Fundamentos & Semântica Web</span></h1>
+        <p class="subtitle">
+            Uma síntese técnica comentada e interativa demonstrando o domínio de estruturações sólidas em HTML5, acessibilidade para leitores de tela (A11Y) e arquitetura da informação.
+        </p>
+        <div class="author-card">
+            <span class="status-dot"></span>
+            <span>Comitê de Estudos de <strong>Gabriel Lopes</strong> | Desenvolvedor Full Stack / Front-end</span>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h1>Título da página</h1>
-            <p>Parágrafo</p>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
+    <!-- BARRA DE NAVEGAÇÃO STICKY PARA LEITURA EXPLORATÓRIA -->
+    <nav aria-label="Navegação pelos tópicos do aprendizado">
+        <div class="nav-container">
+            <a href="#" class="nav-logo"><span>⚡</span> <span>Docs.Dev</span></a>
+            <ul class="nav-links">
+                <li><a href="#anatomia">01. Anatomia Web</a></li>
+                <li><a href="#tags-essenciais">02. Tags & Semântica</a></li>
+                <li><a href="#arquitetura-css">03. Ganchos JS/CSS</a></li>
+                <li><a href="#tabelas">04. Dados Tabulares</a></li>
+                <li><a href="#formularios">05. Forms & UX</a></li>
             </ul>
-        </section>
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL (MAIN) -->
+    <main>
+        <!-- ===================================================================
+             TÓPICO 01: ANATOMIA DE UM DOCUMENTO HTML
+             =================================================================== -->
+        <article id="anatomia" class="module-section">
+            <header class="module-header">
+                <span class="tag-badge">Tópico 01</span>
+                <h2 class="module-title">Anatomia do Documento & Fundamentos Web</h2>
+            </header>
+
+            <div class="grid-split">
+                <div>
+                    <p>
+                        Todo ecossistema web escalável inicia com uma fundação robusta. A declaração <code>&lt;!DOCTYPE html&gt;</code> instrui o navegador a operar no <strong>Modo Padrão (Standards Mode)</strong>, garantindo que a renderização da página siga rigorosamente as especificações do W3C e evite comportamentos incompatíveis (quirks mode).
+                    </p>
+                    <br>
+                    <p>
+                        O atributo de idioma na raiz (<code>&lt;html lang="pt-BR"&gt;</code>) é crítico para o SEO (Search Engine Optimization) e constitui um pilar fundamental da <strong>Acessibilidade (A11Y)</strong>, pois garante que sintetizadores de voz e leitores de tela adotem a pronúncia correta do idioma do usuário.
+                    </p>
+
+                    <div class="pro-tip">
+                        <span class="pro-tip-icon">💡</span>
+                        <div>
+                            <strong>Visão Pro de Engenharia:</strong> O bloco <code>&lt;meta name="viewport"&gt;</code> é o responsável pela responsividade em dispositivos móveis, adaptando a escala inicial da viewport do navegador ao hardware físico do usuário sem perda de fidelidade de renderização.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-box">
+                    <span class="demo-label">Esqueleto Padrão</span>
+                    <pre><code style="background: none; border: none; color: #a5b4fc; display: block; overflow-x: auto;">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" 
+          content="width=device-width, 
+                   initial-scale=1.0"&gt;
+    &lt;title&gt;Título Acadêmico&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Olá mundo!&lt;/h1&gt;
+    &lt;p&gt;Primeiro passo com HTML5.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             TÓPICO 02: TAGS ESSENCIAIS E HIERARQUIA
+             =================================================================== -->
+        <article id="tags-essenciais" class="module-section">
+            <header class="module-header">
+                <span class="tag-badge">Tópico 02</span>
+                <h2 class="module-title">Hierarquia de Conteúdo & Tags Semânticas</h2>
+            </header>
+
+            <p style="max-width: 800px; margin-bottom: 2rem;">
+                A regra de ouro da engenharia Front-end é: <strong>"Use a tag pelo seu significado semântico, nunca por como ela parece visualmente"</strong>. A formatação visual deve ser delegada integralmente ao CSS. As tags são contratualmente a estrutura lógica do documento para navegadores, motores de busca e ferramentas assistivas.
+            </p>
+
+            <div class="grid-split">
+                <div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">Hierarquia de Títulos (h1 a h6)</h3>
+                    <div class="demo-box" style="margin-bottom: 1.5rem;">
+                        <span class="demo-label">Estrutura Visual</span>
+                        <h1 style="font-size: 1.6rem; margin-bottom: 0.2rem;">H1: Título Principal (Único por página)</h1>
+                        <h2 style="font-size: 1.35rem; margin-bottom: 0.2rem; color: #cbd5e1;">H2: Subtítulo do Setor</h2>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 0.2rem; color: #94a3b8;">H3: Seção Especificada</h3>
+                        <h4 style="font-size: 1rem; margin-bottom: 0.2rem; color: #64748b;">H4 a H6: Subdivisões Granulares</h4>
+                    </div>
+
+                    <p>
+                        Diferenciação semântica vital: O elemento <code>&lt;strong&gt;</code> indica <strong>importância e gravidade</strong>, enquanto o elemento <code>&lt;em&gt;</code> representa <em>ênfase tônica na leitura</em>. Não devem ser substituídos pelas tags antigas <code>&lt;b&gt;</code> ou <code>&lt;i&gt;</code> quando a finalidade for transmitir significado.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--accent-purple); margin-bottom: 1rem;">Listas & Navegação Interativa</h3>
+                    <div class="demo-box">
+                        <span class="demo-label">Demonstração Interativa</span>
+                        
+                        <p style="margin-bottom: 0.5rem;"><strong>Stack Tecnológica (Lista Não-Ordenada):</strong></p>
+                        <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-muted);">
+                            <li><strong>HTML5</strong> - Arquitetura e Semântica</li>
+                            <li><strong>CSS3</strong> - Design Tokens & Animações</li>
+                            <li><strong>JavaScript (ES6+)</strong> - Interatividade e DOM</li>
+                        </ul>
+
+                        <p style="margin-bottom: 0.5rem;"><strong>Workflow de Execução (Lista Ordenada):</strong></p>
+                        <ol style="padding-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-muted);">
+                            <li>Análise de Requisitos e Semântica</li>
+                            <li>Desenvolvimento Guiado a Testes e Boas Práticas</li>
+                            <li>Commit & Deploy na Pipeline de Integração</li>
+                        </ol>
+
+                        <hr style="border: none; border-top: 1px solid var(--border-glass); margin: 1.5rem 0;">
+
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="https://maisprati.com.br/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); font-weight: 600; text-decoration: underline;">
+                                🌐 Visitar Ecossistema Mais Prati
+                            </a>
+                            <span style="color: var(--text-muted);">|</span>
+                            <span style="color: var(--text-muted); font-size: 0.9em;">
+                                <em>Img Alt: Proteção nativa com <code>alt="..."</code></em>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             TÓPICO 03: CLASSES E IDS (GANCHOS PARA CSS E JS)
+             =================================================================== -->
+        <article id="arquitetura-css" class="module-section">
+            <header class="module-header">
+                <span class="tag-badge">Tópico 03</span>
+                <h2 class="module-title">Ganchos Arquiteturais: Classes vs. IDs</h2>
+            </header>
+
+            <p style="margin-bottom: 1.5rem;">
+                Atributos globais como <code>id</code> e <code>class</code> funcionam como as convenções de contrato (etiquetas) entre o Markup HTML, as folhas de estilo CSS e a lógica JavaScript. Compreender sua especificidade é a chave para evitar código ilegível ou conflitos de estilo.
+            </p>
+
+            <div class="grid-split">
+                <div class="demo-box">
+                    <span class="demo-label">Exemplo do Curso Módulo 02</span>
+                    <p class="destaque">Esta linha é especial (via <code>.destaque</code>)</p>
+                    <p style="padding: 0.5rem 0;">Esta é uma linha comum e sem estilo diferenciado.</p>
+                    <p class="destaque">Esta também é especial (reutilizando a classe)</p>
+                    
+                    <div id="aviso" class="destaque caixa">
+                        <strong>Elemento Composto:</strong> Tenho um <code>id="aviso"</code> (Único) e duas classes simultâneas (<code>class="destaque caixa"</code>).
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: #fff; margin-bottom: 0.75rem;">Boas Práticas para Sênior:</h3>
+                    <ul style="list-style: none; display: grid; gap: 1rem;">
+                        <li style="background: hsla(220, 20%, 12%, 0.5); padding: 1rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+                            <strong style="color: var(--accent-cyan);">IDs são Exclusivos:</strong> Um <code>id</code> deve ser absolutamente único dentro da página. Use-os estrategicamente para ímãs de ancoragem ( links hash <code>#</code>), vinculação de labels e controle cirúrgico de JavaScript.
+                        </li>
+                        <li style="background: hsla(220, 20%, 12%, 0.5); padding: 1rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+                            <strong style="color: var(--accent-purple);">Classes são Reutilizáveis:</strong> Projetadas segundo metodologias modernas (como BEM ou Design Systems) para definir componentes estilizados de forma modular, mantendo o código DRY (Don't Repeat Yourself).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             TÓPICO 04: ESTRUTURAÇÃO DE DADOS TABULARES
+             =================================================================== -->
+        <article id="tabelas" class="module-section">
+            <header class="module-header">
+                <span class="tag-badge">Tópico 04</span>
+                <h2 class="module-title">Estrutura e Semântica de Dados Tabulares</h2>
+            </header>
+
+            <p style="margin-bottom: 1.5rem;">
+                Tabelas servem exclusivamente para o mapeamento de <strong>dados multidimensionais ou relacionais</strong> (como planilhas, relatórios financeiros ou diários de notas) e <strong>nunca para diagramação de layout de tela</strong>.
+            </p>
+
+            <div class="pro-tip">
+                <span class="pro-tip-icon">♿</span>
+                <div>
+                    <strong>Foco em Acessibilidade (WAI-ARIA & A11Y):</strong> A utilização da tag <code>&lt;caption&gt;</code> para descrever a finalidade da tabela, juntamente com o atributo <code>scope="col"</code> ou <code>scope="row"</code> no elemento <code>&lt;th&gt;</code>, possibilita que deficientes visuais utilizem leitores de tela para associar sem esforço os dados numéricos às suas respectivas colunas e linhas.
+                </div>
+            </div>
+
+            <!-- Tabela Estilizada -->
+            <div class="table-container">
+                <table>
+                    <caption>📊 Tabela Semântica: Registro Operacional — Notas da Turma (Módulo HTML & CSS)</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Aluno(a)</th>
+                            <th scope="col">Módulo Formado</th>
+                            <th scope="col" style="text-align: right;">Nota de Avaliação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Pedro</th>
+                            <td>HTML5 e Vanilla CSS</td>
+                            <td style="text-align: right;"><span class="badge-nota">9.0 / 10</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Maria</th>
+                            <td>HTML5 e Vanilla CSS</td>
+                            <td style="text-align: right;"><span class="badge-nota">10.0 / 10</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             TÓPICO 05: FORMULÁRIOS INTERATIVOS E UX
+             =================================================================== -->
+        <article id="formularios" class="module-section">
+            <header class="module-header">
+                <span class="tag-badge">Tópico 05</span>
+                <h2 class="module-title">Coleta de Dados & Interfaces de Usuário (Forms)</h2>
+            </header>
+
+            <p style="margin-bottom: 2rem;">
+                Formulários são o principal ponto de contato e interatividade entre a interface do usuário e os serviços de backend. Uma marca registrada do desenvolvedor de alto nível é vincular indestrutivamente o texto explicativo (<code>&lt;label for="id-do-campo"&gt;</code>) ao controle correspondente, ampliando o tempo de resposta em telas sensíveis ao toque e eliminando barreiras cognitivas ou de acessibilidade.
+            </p>
+
+            <div class="grid-split">
+                <div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">Demonstração Interativa do Formulário</h3>
+                    
+                    <form id="demoForm" action="#" onsubmit="return false;">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo: <span class="required-star">*</span></label>
+                            <input type="text" id="nome" name="nome" placeholder="ex: Gabriel Lopes" required autocomplete="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail Profissional: <span class="required-star">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="ex: dev@gabriel.lopes.tech" required autocomplete="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha">Chave de Segurança / Senha: <span class="required-star">*</span></label>
+                            <input type="password" id="senha" name="senha" placeholder="••••••••••••" required autocomplete="current-password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="curso">Trabalho ou Trilha de Especialização:</label>
+                            <select name="curso" id="curso">
+                                <option value="fs">Engenharia de Software & Full Stack</option>
+                                <option value="data">Engenharia e Análise de Dados</option>
+                                <option value="fe">Especialista Front-end & UI/UX</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="msg">Considerações de Recrutamento ou Feedback:</label>
+                            <textarea name="msg" id="msg" cols="30" rows="4" placeholder="Escreva aqui suas considerações..."></textarea>
+                        </div>
+
+                        <label class="checkbox-group">
+                            <input type="checkbox" name="termos" required id="termos">
+                            <span>Concordo e confirmo o processamento dos dados submetidos no teste (Validação Nativa).</span>
+                        </label>
+
+                        <button type="submit" id="btnSubmit">
+                            <span>Enviar Demonstração Interativa</span>
+                            <span>➤</span>
+                        </button>
+                    </form>
+
+                    <!-- Feedback de Envio -->
+                    <div id="toast-notice" role="alert" aria-live="assertive">
+                        <strong>🎉 Sucesso na Interatividade!</strong><br>
+                        O evento <code>submit</code> do formulário foi capturado perfeitamente pelo JavaScript Vanilla, demonstrando o domínio da manipulação do DOM sem recarregar a página!
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--accent-purple); margin-bottom: 1rem;">Arquitetura & Boas Práticas:</h3>
+                    
+                    <div class="demo-box" style="margin-bottom: 1.5rem;">
+                        <span class="demo-label">Por que os Labels salvam a UX?</span>
+                        <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                            Ao clicar no texto do label, o campo correspondente com o <code>id</code> idêntico ao <code>for=""</code> é focado e ativado instantaneamente. Isso aumenta drásticamente a <strong>Área de Toque (Touch Target)</strong> para usuários em celulares.
+                        </p>
+                    </div>
+
+                    <div class="demo-box">
+                        <span class="demo-label">Validação Nativa HTML5</span>
+                        <p style="font-size: 0.95rem;">
+                            O atributo <code>required</code> e o uso dos tipos de dados adequados na tag input (<code>type="email"</code>, <code>type="password"</code>, <code>type="tel"</code>, etc.) permitem que o próprio motor do navegador atue como uma primeira camada protetora (Front-line Shield), validando o formato antes de autorizar o envio das requisições para o back-end!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
     </main>
 
-    <!-- Tabelas -->
-
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Idade</th>
-                <th>Cidade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>João</td>
-                <td>25</td>
-                <td>São Paulo</td>
-            </tr>
-            <tr>
-                <td>Maria</td>
-                <td>22</td>
-                <td>Rio de Janeiro</td>
-            </tr>
-            <tr>
-                <td>Pedro</td>
-                <td>28</td>
-                <td>Belo Horizonte</td>
-            </tr>
-        </tbody>
-    </table>
-
+    <!-- FOOTER COM COPYRIGHT E DESTAQUE DE PRÉ-REQUISITO PROFISSIONAL -->
     <footer>
-        <p>Rodapé</p>
+        <p>&copy; 2026 <strong>Gabriel Lopes</strong> &bull; Repositório de Estudos, Evolução e Conhecimentos Sólidos.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85em; color: var(--text-muted);">
+            Projetado de acordo com o padrão moderno da Web: HTML5 Semântico, Vanilla CSS (Tokens & HSL) & Boas Práticas de Engenharia.
+        </p>
+        <div class="social-links">
+            <a href="https://maisprati.com.br/" target="_blank" rel="noopener noreferrer">Ecossistema Mais Prati</a>
+            <span style="color: var(--border-glass)">|</span>
+            <a href="#anatomia">Voltar ao Topo ⬆</a>
+        </div>
     </footer>
+
+    <!-- INTERATIVIDADE JS VANILLA (PORTFÓLIO E UX LIVRE) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('demoForm');
+            const toast = document.getElementById('toast-notice');
+            const submitBtn = document.getElementById('btnSubmit');
+
+            // Capturar evento do formulário de demonstração
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simulação visual do envio de dados
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Processando dados no DOM...</span>';
+                
+                setTimeout(() => {
+                    toast.style.display = 'block';
+                    submitBtn.innerHTML = '<span>✔ Dados Validados! Testar novamente</span>';
+                    submitBtn.disabled = false;
+                    
+                    // Auto esconder o aviso após 7 segundos para UX limpa
+                    setTimeout(() => {
+                        toast.style.display = 'none';
+                        submitBtn.innerHTML = '<span>Enviar Demonstração Interativa</span><span>➤</span>';
+                        form.reset();
+                    }, 7000);
+                }, 600);
+            });
+        });
+    </script>
 </body>
 
 </html>
