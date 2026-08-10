@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            font-size: 1rem;
+            color: rgb(92, 76, 76);
+            display: block;
+        }
+
+        input {
+            border-radius: 4px;
+        }
+
+        #form-register {
+            background-color: beige;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            box-shadow: 0 4px 8px rgb(0, 0, 0.1);
+            justify-content: center;
+            border-radius: 10px;
+            padding: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form-register">
+        <form action="">
+            <label>Nome Completo</label>
+            <input type="text" placeholder="Digite seu nome completo">
+            <label>Data de Nascimento</label>
+            <input type="date">
+
+            <label>Pesquisa</label>
+            <input type="search">
+
+            <label>Telefone</label>
+            <input type="tel">
+
+            <label>Cor preferida</label>
+            <input type="color">
+
+            <label>URL</label>
+            <input type="url">
+
+            <label>CPF</label>
+            <input type="text" maxlength="11" pattern="\d{11}">
+
+            <label>Idade</label>
+            <input type="number" min="0" max="120">
+
+            <label>Profissão</label>
+            <select>
+                <option>Desenvolvedor</option>
+                <option>Designer</option>
+                <option>Marketing</option>
+                <option>Outro</option>
+            </select>
+
+            <label>Como nos conheceu?</label>
+            <input type="radio" name="how-did-you-hear" value="google">
+            <label>Google</label>
+
+            <input type="radio" name="how-did-you-hear" value="instagram">
+            <label>Instagram</label>
+
+            <input type="radio" name="how-did-you-hear" value="facebook">
+            <label>Facebook</label>
+
+            <label>Interesses</label>
+            <input type="checkbox" name="interests" value="tech">
+            <label>Tecnologia</label>
+
+            <input type="checkbox" name="interests" value="design">
+            <label>Design</label>
+
+            <input type="checkbox" name="interests" value="marketing">
+            <label>Marketing</label>
+
+            <label>Mensagem</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+
+            <button type="submit">Enviar</button>
+            <button type="reset">Cancelar</button>
+            <button type="button">Ajuda</button>
+
+            <label>Esconda seu telefone</label>
+            <input type="hidden" name="phone" value="5531992345678">
+
+            <label>Hora preferida</label>
+            <input type="time">
+        </form>
+    </div>
+</body>
+
+</html>

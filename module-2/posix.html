@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        div {
+            border: 1px solid red;
+            width: 200px;
+            height: 100px;
+        }
+
+        div.estatico {
+            border: 1px solid black;
+            background-color: lightgrey;
+        }
+
+        div.relative {
+            position: relative;
+            top: 20px;
+            left: 30px;
+            background-color: lightblue;
+        }
+
+        div.absoluto {
+            position: absolute;
+            top: 50px;
+            right: 5px;
+            left: 70px;
+            background-color: orange;
+        }
+
+        div.fixa {
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
+
+        div.sticky {
+            position: sticky;
+            top: 0;
+            left: 0;
+            margin: 0;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="estatico">
+        <h1>Estático</h1>
+    </div>
+
+    <div class="relative">
+        <h1>Estático</h1>
+    </div>
+
+    <div class="absoluto">
+        <h1>Absoluto</h1>
+    </div>
+
+    <div class="fixa">
+        <h1>Fixa</h1>
+    </div>
+
+    <div class="sticky">
+        <h1>Sticky</h1>
+    </div>
+
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio nesciunt accusantium ipsum dolorem
+        doloremque? Tempora incidunt magnam consequatur minima reiciendis. Commodi sed dolorum temporibus iure porro
+        dicta, eos expedita. Quae.</p>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+        }
+
+        .demo-section {
+            margin-bottom: 40px;
+        }
+
+        .demo-section h2.content {
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            margin-left: 100px;
+        }
+
+        .demo-section h2.units {
+            border: 1px solid red;
+            width: 100vmin;
+            height: 100vmin;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            border: 2px solid gray;
+            width: 200px;
+            padding: 20px;
+            border-radius: 6px;
+            background: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .product-card .product-name {
+            font-size: 1.1rem;
+            margin: 0 0 8px;
+        }
+
+        .product-card .product-price {
+            color: #e74ce7;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="demo-section">
+        <h2 class="content">Conteúdo</h2>
+        <h2 class="units">Unidades de medida</h2>
+    </section>
+
+    <section>
+        <div class="product-card">
+            <img src="https://static.netshoes.com.br/produtos/tenis-adidas-breaknet/05/FB9-9335-205/FB9-9335-205_zoom1.jpg?ts=1783995744&ims=1088x"
+                alt="">
+            <h3 class="product-name">Tênis</h3>
+            <p class="product-price">R$ 350,00</p>
+            <button>Comprar</button>
+        </div>
+    </section>
+</body>
+
+</html>
