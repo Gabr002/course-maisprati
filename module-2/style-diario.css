@@ -173,4 +173,10 @@ body {
             "menu-lateral"
             "rodape";
     }
+
+    .cabecalho {
+        flex-direction: column;
+        gap: 12px;
+
+    }
 }
