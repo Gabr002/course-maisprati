@@ -8,5 +8,6 @@
 @import "components/card.css";
 @import "components/button.css";
 @import "components/tags.css";
+@import "components/box.css";
 
 @import "../pages/materia.css";

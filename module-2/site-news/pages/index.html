@@ -1,78 +1,62 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clarim Diário</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <script src="../js/components/news-card.js" defer></script>
+    <link rel="stylesheet" href="../css/main.css" />
     <script src="../js/components/site-header.js" defer></script>
+    <script src="../js/components/news-card.js" defer></script>
     <script src="../js/components/site-footer.js" defer></script>
-
-</head>
-
-<body>
+  </head>
+  <body>
     <site-header></site-header>
-
+    
     <div class="conteudo">
-        <main class="principal">
-            <article class="cartao cartao--destaque">
-                <span class="categoria">
-                    Homem-Aranha
-                </span>
-                <h1 class="cartao__titulo">
-                    Homem-Aranha é visto de máscara!
-                </h1>
-                <p class="cartao__resumo">
-                    Na ponte de Manhattan, o herói mais querido de Nova York foi flagrado por cidadãos.
-                </p>
+      <main class="principal">
+        <article class="cartao card--destaque">
+          <span class="categoria">Homem-Aranha</span>
+          <h1 class="card__titulo">Homem-Aranha é visto de máscara!</h1>
+          <p class="card__resumo">
+            Na ponte Manhattan Homem-Aranha é visto batendo em um senhor de 6
+            braços.
+          </p>
+        </article>
 
-                <div class="meta">
-                    <span>
-                        Por J. Jonah Jameson
-                    </span>
-                    <span>
-                        em 10 de Agosto de 2026
-                    </span>
-                </div>
-            </article>
+        <section class="grade-noticias">
+          <news-card
+            categoria="Economia"
+            titulo="Dólar recua e a bolsa sobe."
+            resumo="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur magnam quisquam repudiandae dolorum corrupti ea dolor cumque nostrum, itaque corporis possimus? Perspiciatis natus ipsam error quae aliquid quo sit vero."
+          ></news-card>
 
-            <section class="grade-noticias">
-                <news-card categoria="Economia" titulo="Dólar" resumo="Mercado reage à eleição de Wilson Fisk como prefeito de Nova York, declarando apoio total ao
-                    Presidente, Capitão América e a Pátria.
-                "></news-card>
+          <news-card
+            categoria="Esportes"
+            titulo="Dólar recua e a bolsa sobe."
+            resumo="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur magnam quisquam repudiandae dolorum corrupti ea dolor cumque nostrum, itaque corporis possimus? Perspiciatis natus ipsam error quae aliquid quo sit vero."
+          ></news-card>
 
-                <news-card categoria="Economia" titulo="Dólar" resumo="Mercado reage à eleição de Wilson Fisk como prefeito de Nova York, declarando apoio total ao
-                    Presidente, Capitão América e a Pátria.
-                "></news-card>
+          <news-card
+            categoria="Cultura"
+            titulo="Dólar recua e a bolsa sobe."
+            resumo="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur magnam quisquam repudiandae dolorum corrupti ea dolor cumque nostrum, itaque corporis possimus? Perspiciatis natus ipsam error quae aliquid quo sit vero."
+          ></news-card>
+        </section>
+      </main>
 
-                <news-card categoria="Economia" titulo="Dólar" resumo="Mercado reage à eleição de Wilson Fisk como prefeito de Nova York, declarando apoio total ao
-                    Presidente, Capitão América e a Pátria.
-                "></news-card>
-
-                <news-card categoria="Economia" titulo="Dólar" resumo="Mercado reage à eleição de Wilson Fisk como prefeito de Nova York, declarando apoio total ao
-                    Presidente, Capitão América e a Pátria.
-                "></news-card>
-            </section>
-        </main>
+      <aside class="menu-lateral">
+        <div class="caixa">
+          <h3>Mais lidas</h3>
+          <ol>
+            <li>O que muda agora que todos sabem que Billy Butcher morreu?</li>
+            <li>Batman é visto com a Catwoman em telhado</li>
+            <li>Estreando no mundo da moda, Harley Queen destrói o palco</li>
+            <li>Goku revive pela 6 vez</li>
+          </ol>
+        </div>
+      </aside>
     </div>
 
-    <aside class="menu-lateral">
-        <div class="caixa">
-            <h3>Mais lidas</h3>
-            <ol>
-                <li>O que muda agora que todos sabem que Billy Butcher morreu?
-                </li>
-                <li>Batman é visto com a CatWonman em telhado</li>
-                <li>Estrelando no mundo da moda, Elektra vira capa da Vogue</li>
-                <li>Previsão do tempo: Chuvas fortes em Nova York</li>
-                <li>O Clarim Diário apoia a causa animal</li>
-            </ol>
-        </div>
-    </aside>
-
     <site-footer></site-footer>
-</body>
-
+  </body>
 </html>

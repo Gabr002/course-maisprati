@@ -23,7 +23,7 @@
 }
 
 .navegacao a {
-    font-family: var(--font-ui);
+    font-family: var(--fonte-ui);
     font-size: 15px;
     color: var(--cor-texto);
     text-decoration: none;

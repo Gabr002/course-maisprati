@@ -1,18 +1,16 @@
 class NewsCard extends HTMLElement {
-    connectedCallback() {
+  connectedCallback() {
+    const categoria = this.getAttribute('categoria') || '';
+    const titulo    = this.getAttribute('titulo')    || '';
+    const resumo    = this.getAttribute('resumo')    || '';
 
-        let categoria = this.getAttribute('categoria' || '');
-        let titulo = this.getAttribute('titulo' || '');
-        let resumo = this.getAttribute('resumo' || '');
-
-        this.innerHTML = `
-        <article class="cartao">
-                <span class="categoria">${categoria}</span>
-                <h3>${titulo}</h3>
-                ${resumo ? `<p class="card__resumo">${resumo}</p>` : ''}
-        </article>`
-            ;
-    }
+    this.innerHTML = `
+      <article class="cartao">
+        <span class="categoria">${categoria}</span>
+        <h3 class="cartao__titulo">${titulo}</h3>
+        ${resumo ? `<p class="cartao__resumo">${resumo}</p>` : ''}
+      </article>
+    `;
+  }
 }
-
 customElements.define('news-card', NewsCard);
