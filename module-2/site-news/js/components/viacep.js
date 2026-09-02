@@ -14,3 +14,9 @@ export async function buscarCep(cep) {
 
     return dados
 }
+
+/*
+    Criem um field de input de texto - CEP
+
+    Ao clicar no botão, automaticamente vai preencher os demais campos
+ */
