@@ -94,3 +94,4 @@ O Git gerencia o estado dos seus arquivos em três áreas principais durante o f
 > [!TIP]
 > **Fluxo Resumido:**
 > **Working Directory** ➡️ `(git add)` ➡️ **Staging Area** ➡️ `(git commit)` ➡️ **Local Repository**
+

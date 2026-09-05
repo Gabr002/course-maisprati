@@ -52,7 +52,7 @@
 // Simule um gerenciador de tarefas: adicione 4 tarefas, remova uma pelo nome e
 // exiba a lista antes e depois.
 
-let inicio = null
+/* let inicio = null
 
 function adicionar(tarefa) {
     let novoNo = { valor: tarefa, proximo: null }
@@ -132,3 +132,5 @@ console.log("=== Removendo uma tarefa ===")
 console.log("Responder e-mails")
 
 exibir()
+ */
+
