@@ -15,3 +15,8 @@ test("Deve adicionar o total corretamente com vários itens", () => {
 
     expect(calcularTotal()).toBe(139.8)
 })
+
+test("Quando o carrinho estiver vazio, o total deve ser zero.", () => {
+    expect(calcularTotal()).toBe(0)
+    expect(contarItens()).toBe(0)
+})
