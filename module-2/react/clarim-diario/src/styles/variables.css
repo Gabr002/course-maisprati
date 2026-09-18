@@ -6,6 +6,11 @@
 
     --fonte-manchete: Georgia, 'Times New Roman', Times, serif;
     --fonte-ui: Arial, Helvetica, sans-serif;
+}
 
-
+[data-theme="dark"] {
+    --tinta: #f4f4f4;
+    --papel: #111;
+    --urgente: #ff5468;
+    --cinza-legenda: #a5a196;
 }

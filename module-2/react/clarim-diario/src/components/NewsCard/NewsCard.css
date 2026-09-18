@@ -1,6 +1,6 @@
 .card {
-    background-color: #fff;
-    border: 1px solid var(--tinta);
+    background-color: var(--papel);
+    border: 1px solid #fff;
     padding: 18px;
 
 }

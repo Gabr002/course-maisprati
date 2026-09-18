@@ -1,6 +1,7 @@
-import Header from "./components/Header/Header.jsx"
-import NewsCard from './components/NewsCard/NewsCard.jsx'
-import { noticias } from "./data/noticias.js"
+import { useState, useEffect } from "react"
+import { Routes, Route } from "react-router-dom"
+import Header from "./components/Header/Header"
+import Home from './pages/Home/Home'
 import './App.css'
 
 function App() {
@@ -8,26 +9,30 @@ function App() {
   // A linha 8 é um operador desestruturante que separa o primeiro item do array 'noticias' 
   // e atribui a variável 'manchete', e o restante dos itens do array 'noticias' 
   // é atribuído à variável 'demais'
-  const [manchete, ...demais] = noticias;
+  // A linha 15 usa o Hook useState para definir o estado inicial do tema como 'light' e a função 'setTema' para atualizar o estado
+  const [tema, setTema] = useState(() => {
+    const salvo = localStorage.getItem('tema') || 'light'
+    if (salvo) return salvo
+
+    const preferenciaEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
+  });
+
+  function alterTheme() {
+    setTema(t => (t === 'light' ? 'dark' : 'light'));
+  }
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', tema);
+    localStorage.setItem('tema', tema)
+  }, [tema]);
 
   return (
     <>
-      <Header />
-      <main className="container">
-        <section className="manchete">
-          <NewsCard categoria={manchete.categoria} titulo={manchete.titulo} resumo={manchete.resumo} />
-        </section>
+      <Header tema={tema} alterTheme={alterTheme} />
 
-        <section className="grade">
-          {demais.map(noticia => (
-            <NewsCard
-              key={noticia.id}
-              categoria={noticia.categoria}
-              titulo={noticia.titulo}
-              resumo={noticia.resumo} />
-          ))}
-        </section>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   )
 }
