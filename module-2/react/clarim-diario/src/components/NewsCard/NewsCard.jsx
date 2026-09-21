@@ -1,11 +1,14 @@
 import './NewsCard.css';
+import { Link } from 'react-router-dom'
 
 
-function NewsCard({ categoria, titulo, resumo }) {
+function NewsCard({ categoria, titulo, resumo, id }) {
     return (
         <article className="card">
             <span className="card__categoria">{categoria}</span>
-            <h3 className="card__titulo">{titulo}</h3>
+            <h3 className="card__titulo">
+                <Link to={`/materia/${id}`}>{titulo}</Link>
+            </h3>
 
 
             {resumo && <p className="card__resumo">{resumo}</p>}
