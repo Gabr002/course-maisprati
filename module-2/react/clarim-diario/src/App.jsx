@@ -2,15 +2,12 @@ import { useState, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import Header from "./components/Header/Header"
 import Home from './pages/Home/Home'
+import Cadastro from "./pages/Cadastro/Cadastro"
 import Materia from "./pages/Materia/Materia"
 import './App.css'
 
 function App() {
 
-  // A linha 8 é um operador desestruturante que separa o primeiro item do array 'noticias' 
-  // e atribui a variável 'manchete', e o restante dos itens do array 'noticias' 
-  // é atribuído à variável 'demais'
-  // A linha 15 usa o Hook useState para definir o estado inicial do tema como 'light' e a função 'setTema' para atualizar o estado
   const [tema, setTema] = useState(() => {
     const salvo = localStorage.getItem('tema') || 'light'
     if (salvo) return salvo
@@ -33,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/materia/:id" element={<Materia />} />
+        <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
     </>
   )

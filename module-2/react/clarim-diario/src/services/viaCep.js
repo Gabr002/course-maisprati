@@ -13,5 +13,7 @@ export async function buscar(cep) {
         throw new Error('CEP não encontrado!')
     }
 
+    console.log(data)
+
     return data;
 }
