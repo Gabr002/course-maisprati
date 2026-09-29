@@ -1,4 +1,3 @@
-import './Cadastro.css'
 import { useState } from 'react';
 import { buscar } from '../../services/viaCep.js'
 

@@ -19,6 +19,7 @@ function Home() {
             <section className="grade">
                 {demais.map(noticia => (
                     <NewsCard
+                        key={noticia.id}
                         id={noticia.id}
                         categoria={noticia.categoria}
                         titulo={noticia.titulo}

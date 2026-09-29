@@ -4,10 +4,11 @@ import Header from "./components/Header/Header"
 import Home from './pages/Home/Home'
 import Cadastro from "./pages/Cadastro/Cadastro"
 import Materia from "./pages/Materia/Materia"
+import Login from './pages/Login/Login.jsx'
 import './App.css'
 
-function App() {
 
+function App() {
   const [tema, setTema] = useState(() => {
     const salvo = localStorage.getItem('tema') || 'light'
     if (salvo) return salvo
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/materia/:id" element={<Materia />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </>
   )

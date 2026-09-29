@@ -16,6 +16,32 @@
     padding-bottom: 6px;
 }
 
+.cabecalho__sessao a {
+    color: var(--tinta);
+}
+
+.cabecalho__login {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    color: var(--urgente);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+
+.cabecalho__logout {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    background: none;
+    border: none;
+    color: var(--urgente);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+
 .cabecalho__titulo {
     text-align: center;
     font-style: italic;
