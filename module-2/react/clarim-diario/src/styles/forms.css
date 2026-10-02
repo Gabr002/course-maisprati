@@ -3,7 +3,7 @@
     margin: 32px auto 48px;
     border: 2px solid var(--tinta);
     padding: 32px;
-    background: var(--papel-card, #fff);
+    background: var(--papel-cards, #fff);
 }
 
 .formulario h1 {

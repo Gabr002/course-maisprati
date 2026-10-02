@@ -3,14 +3,16 @@
     --papel: #f7f4ec;
     --urgente: #b3001b;
     --cinza-legenda: #5d5a52;
+    --papel-cards: #ffffff;
 
     --fonte-manchete: Georgia, 'Times New Roman', Times, serif;
     --fonte-ui: Arial, Helvetica, sans-serif;
 }
 
 [data-theme="dark"] {
-    --tinta: #f4f4f4;
-    --papel: #111;
+    --tinta: #e8e4d8;
+    --papel: #191817;
     --urgente: #ff5468;
     --cinza-legenda: #a5a196;
+    --papel-cards: #24221f;
 }

@@ -5,6 +5,8 @@ import Home from './pages/Home/Home'
 import Cadastro from "./pages/Cadastro/Cadastro"
 import Materia from "./pages/Materia/Materia"
 import Login from './pages/Login/Login.jsx'
+import Painel from './pages/Painel/Painel.jsx'
+import RotaProtegida from "./pages/Painel/RotaProtegida.jsx"
 import './App.css'
 
 
@@ -33,6 +35,11 @@ function App() {
         <Route path="/materia/:id" element={<Materia />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path='/login' element={<Login />} />
+        <Route path="/painel" element={
+          <RotaProtegida>
+            <Painel />
+          </RotaProtegida>
+        } />
       </Routes>
     </>
   )

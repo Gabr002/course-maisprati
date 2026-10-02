@@ -2,7 +2,7 @@ import './NewsCard.css';
 import { Link } from 'react-router-dom'
 
 
-function NewsCard({ categoria, titulo, resumo, id }) {
+function NewsCard({ id, categoria, titulo, resumo }) {
     return (
         <article className="card">
             <span className="card__categoria">{categoria}</span>

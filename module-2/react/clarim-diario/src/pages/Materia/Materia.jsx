@@ -1,11 +1,31 @@
 import { useParams, Link } from "react-router-dom"
-import { noticias } from "../../data/noticias.js"
+import { buscarNoticiaPorId } from "../../services/noticias.js"
+import { useState, useEffect } from "react"
 import './Materia.css'
 
 function Materia() {
-    const { id } = useParams();
+    const { id } = useParams()
 
-    const noticia = noticias.find(n => n.id === Number(id));
+    const [noticia, setNoticia] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        async function load() {
+            try {
+                setLoading(true)
+                setError(null)
+                const data = await buscarNoticiaPorId(id)
+                setNoticia(data)
+            } catch {
+                setError('Não foi possível carregar a notícia')
+            } finally {
+                setLoading(false)
+            }
+        }
+        load()
+    }, [id])
+
 
     if (!noticia) {
         return (
